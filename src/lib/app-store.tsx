@@ -165,7 +165,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
       activities: [
         {
           id: uid(),
-          type: "task_created",
+          type: "task_created" as ActivityType,
           label: `Created task: ${trimmed}`,
           timestamp: Date.now(),
         },
@@ -192,7 +192,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
       activities: [
         {
           id: uid(),
-          type: "task_created",
+          type: "task_created" as ActivityType,
           label: `Added ${clean.length} task${clean.length > 1 ? "s" : ""} from a plan`,
           timestamp: now,
         },
