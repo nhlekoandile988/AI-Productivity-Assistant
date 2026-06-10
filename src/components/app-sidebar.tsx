@@ -6,8 +6,8 @@ import {
   ListChecks,
   Search,
   MessageSquare,
-  Sparkles,
 } from "lucide-react";
+import logoAsset from "@/assets/capaciti-logo.jpg.asset.json";
 
 import {
   Sidebar,
@@ -39,8 +39,8 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader className="border-b border-sidebar-border/40 px-4 py-5">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white shadow-glow group-hover:scale-105 transition-transform">
-            <Sparkles className="h-5 w-5 text-primary" strokeWidth={2.5} />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1 shadow-glow group-hover:scale-105 transition-transform overflow-hidden">
+            <img src={logoAsset.url} alt="CAPACITI" className="h-full w-full object-contain" />
           </div>
           <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
             <span className="font-display font-bold text-white text-base tracking-tight">
