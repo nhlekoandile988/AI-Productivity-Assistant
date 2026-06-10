@@ -63,7 +63,7 @@ Developed as part of the **CAPACITI AI Skill Accelerator Programme**, this proje
 
 ### Design & UI
 
-* CSS
+* Tailwind CSS
 * Modern Responsive Design
 * CAPACITI Brand Styling
 
