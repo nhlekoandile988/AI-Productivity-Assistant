@@ -5,6 +5,7 @@ import { Search, Loader2, Sparkles, Copy } from "lucide-react";
 import { toast } from "sonner";
 
 import { askAI } from "@/lib/ai.functions";
+import { useAppStore } from "@/lib/app-store";
 import { ToolShell } from "@/components/tool-shell";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/research")({
 
 function Research() {
   const ai = useServerFn(askAI);
+  const { logActivity } = useAppStore();
   const [topic, setTopic] = useState("");
   const [depth, setDepth] = useState("brief");
   const [output, setOutput] = useState("");
@@ -57,6 +59,7 @@ function Research() {
         },
       });
       setOutput(res.content);
+      logActivity("research_query", `Researched: ${topic.slice(0, 60)}`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to research");
     } finally {

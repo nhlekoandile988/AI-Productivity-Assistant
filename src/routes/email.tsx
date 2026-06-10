@@ -5,6 +5,7 @@ import { Mail, Copy, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 import { askAI } from "@/lib/ai.functions";
+import { useAppStore } from "@/lib/app-store";
 import { ToolShell } from "@/components/tool-shell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +31,7 @@ export const Route = createFileRoute("/email")({
 
 function EmailGenerator() {
   const ai = useServerFn(askAI);
+  const { logActivity } = useAppStore();
   const [recipient, setRecipient] = useState("");
   const [subject, setSubject] = useState("");
   const [tone, setTone] = useState("professional");
@@ -60,6 +62,7 @@ function EmailGenerator() {
         },
       });
       setOutput(res.content);
+      logActivity("email_generated", `Generated email${subject ? `: ${subject}` : recipient ? ` to ${recipient}` : ""}`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to generate email");
     } finally {

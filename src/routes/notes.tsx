@@ -5,6 +5,7 @@ import { FileText, Copy, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 import { askAI } from "@/lib/ai.functions";
+import { useAppStore } from "@/lib/app-store";
 import { ToolShell } from "@/components/tool-shell";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/notes")({
 
 function NotesSummarizer() {
   const ai = useServerFn(askAI);
+  const { logActivity } = useAppStore();
   const [notes, setNotes] = useState("");
   const [style, setStyle] = useState("bullets");
   const [output, setOutput] = useState("");
@@ -57,6 +59,7 @@ function NotesSummarizer() {
         },
       });
       setOutput(res.content);
+      logActivity("notes_summarized", `Summarized notes (${notes.length} chars)`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to summarize");
     } finally {
