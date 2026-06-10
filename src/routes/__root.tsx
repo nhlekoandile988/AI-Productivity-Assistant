@@ -15,6 +15,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { AppStoreProvider } from "@/lib/app-store";
+import { FloatingChat } from "@/components/floating-chat";
+import { HeaderSearch, ThemeToggle, ProfileStatus } from "@/components/header-tools";
 
 function NotFoundComponent() {
   return (
@@ -123,17 +125,17 @@ function RootComponent() {
           <div className="min-h-screen flex w-full bg-brand-surface">
             <AppSidebar />
             <div className="flex-1 flex flex-col min-w-0">
-              <header className="h-14 flex items-center gap-3 border-b border-border bg-white/80 backdrop-blur-md px-4 sticky top-0 z-30">
+              <header className="h-14 flex items-center gap-3 border-b border-border bg-card/80 backdrop-blur-md px-4 sticky top-0 z-30">
                 <SidebarTrigger className="text-foreground hover:bg-accent" />
                 <div className="h-5 w-px bg-border" />
-                <span className="text-sm font-medium text-muted-foreground">
-                  Workplace Productivity Assistant
-                </span>
+                <HeaderSearch />
                 <div className="ml-auto flex items-center gap-2">
                   <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-brand text-white text-xs font-semibold shadow-soft">
                     <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
                     AI Ready
                   </div>
+                  <ThemeToggle />
+                  <ProfileStatus />
                 </div>
               </header>
               <main className="flex-1 min-w-0">
@@ -141,6 +143,7 @@ function RootComponent() {
               </main>
             </div>
           </div>
+          <FloatingChat />
           <Toaster richColors position="top-right" />
         </SidebarProvider>
       </AppStoreProvider>
