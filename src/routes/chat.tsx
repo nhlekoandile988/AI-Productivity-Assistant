@@ -5,6 +5,7 @@ import { MessageSquare, Send, Loader2, Sparkles, User } from "lucide-react";
 import { toast } from "sonner";
 
 import { askAI } from "@/lib/ai.functions";
+import { useAppStore } from "@/lib/app-store";
 import { ToolShell } from "@/components/tool-shell";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,6 +24,7 @@ type Msg = { role: "user" | "assistant"; content: string };
 
 function Chat() {
   const ai = useServerFn(askAI);
+  const { logActivity } = useAppStore();
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -53,6 +55,7 @@ function Chat() {
         },
       });
       setMessages((m) => [...m, { role: "assistant", content: res.content }]);
+      logActivity("chat_message", `Chat: ${userMsg.content.slice(0, 60)}`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Chat failed");
       setMessages((m) => m.slice(0, -1));
