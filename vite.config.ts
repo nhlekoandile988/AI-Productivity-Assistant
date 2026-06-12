@@ -21,6 +21,7 @@ export default defineConfig({
         "@tanstack/react-router",
         "@tanstack/react-start",
         "@tanstack/router-core",
+        "@tanstack/router-core/ssr/client",
         "seroval",
         "lucide-react",
         "@radix-ui/react-dialog",
