@@ -12,4 +12,30 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    optimizeDeps: {
+      // Pre-bundle deps that Vite otherwise discovers lazily, which triggers
+      // mid-session re-optimization and 504s on stale chunk URLs.
+      include: [
+        "@supabase/supabase-js",
+        "@tanstack/react-router",
+        "@tanstack/react-start",
+        "@tanstack/router-core",
+        "@tanstack/router-core/ssr/client",
+        "seroval",
+        "lucide-react",
+        "@radix-ui/react-dialog",
+        "@radix-ui/react-select",
+        "@radix-ui/react-label",
+        "@radix-ui/react-separator",
+        "@radix-ui/react-slot",
+        "@radix-ui/react-tooltip",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "sonner",
+        "zod",
+      ],
+    },
+  },
 });
